@@ -3,5 +3,6 @@ package main
 import "localhost/he/go-mollie-api/mollie"
 
 func main() {
-	mollie.Request()
+	m := mollie.Get("test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU")
+	m.Issuers.List()
 }
