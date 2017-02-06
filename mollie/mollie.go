@@ -6,7 +6,7 @@ import (
 )
 
 type Mollie struct {
-	Issuers *issuers.Issuers
+	Issuers *issuers.IssuerApi
 }
 
 func Get(apiKey string) Mollie {
