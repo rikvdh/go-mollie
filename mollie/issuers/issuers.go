@@ -28,7 +28,7 @@ func NewIssuers(c core.Core) *IssuerApi {
 
 func (a *IssuerApi) List() ([]Issuer, error) {
 	var issuers IssuerListWrapper
-	err := a.core.Request("issuers", &issuers)
+	err := a.core.Get("issuers", &issuers)
 
 	if err != nil {
 		return nil, err
@@ -39,7 +39,7 @@ func (a *IssuerApi) List() ([]Issuer, error) {
 
 func (a *IssuerApi) Get(issuerId string) (*Issuer, error) {
 	var issuer Issuer
-	err := a.core.Request("issuers/" + issuerId, &issuer)
+	err := a.core.Get("issuers/" + issuerId, &issuer)
 	if err != nil {
 		return nil, err
 	}

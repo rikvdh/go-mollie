@@ -39,7 +39,7 @@ func NewMethods(c core.Core) *MethodApi {
 
 func (a *MethodApi) List() ([]Method, error) {
 	var methods MethodListWrapper
-	err := a.core.Request("methods", &methods)
+	err := a.core.Get("methods", &methods)
 
 	if err != nil {
 		return nil, err
@@ -50,7 +50,7 @@ func (a *MethodApi) List() ([]Method, error) {
 
 func (a *MethodApi) Get(methodId string) (*Method, error) {
 	var method Method
-	err := a.core.Request("methods/" + methodId, &method)
+	err := a.core.Get("methods/" + methodId, &method)
 	if err != nil {
 		return nil, err
 	}

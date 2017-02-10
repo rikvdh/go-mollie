@@ -3,6 +3,7 @@ package core
 import (
 	"errors"
 	"strings"
+	"io"
 	"io/ioutil"
 	"net/http"
 	"encoding/json"
@@ -19,9 +20,22 @@ func getUri(action string) string {
 	return endpoint + "/" + apiVersion + "/" + action
 }
 
-func (c Core) Request(action string, d interface{}) error {
-	reader := strings.NewReader("bots")
-	req, err := http.NewRequest("GET", getUri(action), reader)
+func (c Core) Get(action string, d interface{}) error {
+	return c.request("GET", action, d, nil)
+}
+
+func (c Core) Post(action string, d interface{}, postData interface{}) error {
+	postStr, err := json.Marshal(postData)
+	if err != nil {
+		return err
+	}
+
+	reader := strings.NewReader(string(postStr))
+	return c.request("POST", action, d, reader)
+}
+
+func (c Core) request(method, action string, d interface{}, reader io.Reader) error {
+	req, err := http.NewRequest(method, getUri(action), reader)
 	if err != nil {
 		return err
 	}
