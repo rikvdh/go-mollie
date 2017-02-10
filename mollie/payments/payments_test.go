@@ -5,7 +5,7 @@ import (
 	"localhost/he/go-mollie-api/mollie/core"
 )
 
-func TestMethodList(t *testing.T) {
+func TestPaymentAddGet(t *testing.T) {
 	is := NewPayments(core.Core{ApiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
 
 	p, err := is.New(PaymentData{
@@ -26,5 +26,55 @@ func TestMethodList(t *testing.T) {
 	}
 	if p.Amount != 100.99 {
 		t.Errorf("Mollie may not change our amount! :O")
+	}
+
+	q, err := is.Get(p.Id)
+	if err != nil {
+		t.Errorf("Error is not nil\n")
+	}
+	if len(q.Id) == 0 {
+		t.Errorf("ID must not be empty\n")
+	}
+	if q.Amount != 100.99 {
+		t.Errorf("Mollie may not change our amount! :O")
+	}
+
+}
+
+func TestPaymentGetError(t *testing.T) {
+	is := NewPayments(core.Core{ApiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
+
+	q, err := is.Get("foo_bar")
+	if err == nil {
+		t.Errorf("Error is not nil\n")
+	}
+	if q != nil {
+		t.Errorf("No payment may be retrieved\n")
+	}
+}
+
+func TestPaymentList(t *testing.T) {
+	is := NewPayments(core.Core{ApiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
+
+	q, err := is.List(0, 2)
+	if err != nil {
+		t.Errorf("Error is not nil: %s\n", err)
+	}
+	if len(q) != 2 {
+		t.Errorf("ID must not be empty\n")
+	}
+	w, err := is.List(0, 1)
+	if err != nil {
+		t.Errorf("Error is not nil: %s\n", err)
+	}
+	if len(w) != 1 {
+		t.Errorf("ID must not be empty\n")
+	}
+	e, err := is.List(1, 1)
+	if err != nil {
+		t.Errorf("Error is not nil: %s\n", err)
+	}
+	if len(e) != 1 {
+		t.Errorf("ID must not be empty\n")
 	}
 }
