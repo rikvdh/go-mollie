@@ -24,4 +24,7 @@ func TestMethodList(t *testing.T) {
 	if len(p.Id) == 0 {
 		t.Errorf("ID must not be empty\n")
 	}
+	if p.Amount != 100.99 {
+		t.Errorf("Mollie may not change our amount! :O")
+	}
 }

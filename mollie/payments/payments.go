@@ -27,7 +27,7 @@ type PaymentReply struct {
 	CreatedDatetime string `json:"createdDatetime"`
 	Status string
 	ExpiryPeriod string `json:"expiryPeriod"`
-	Amount string
+	Amount float64 `json:",string"`
 	Description string
 	Method string
 	Metadata interface{}
