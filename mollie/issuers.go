@@ -1,11 +1,7 @@
-package issuers
-
-import (
-	"github.com/rikvdh/go-mollie-api/core"
-)
+package mollie
 
 type IssuerApi struct {
-	core core.Core
+	core *Core
 }
 
 type Issuer struct {
@@ -22,7 +18,7 @@ type IssuerListWrapper struct {
 	Data       []Issuer
 }
 
-func NewIssuers(c core.Core) *IssuerApi {
+func NewIssuers(c *Core) *IssuerApi {
 	return &IssuerApi{core: c}
 }
 

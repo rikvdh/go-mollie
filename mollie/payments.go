@@ -1,13 +1,12 @@
-package payments
+package mollie
 
 import (
-	"github.com/rikvdh/go-mollie-api/core"
 	"strconv"
 	"time"
 )
 
 type PaymentApi struct {
-	core core.Core
+	core *Core
 }
 
 type PaymentData struct {
@@ -64,7 +63,7 @@ type PaymentReplyWrapper struct {
 	Data       []PaymentReply
 }
 
-func NewPayments(c core.Core) *PaymentApi {
+func NewPayments(c *Core) *PaymentApi {
 	return &PaymentApi{core: c}
 }
 

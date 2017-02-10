@@ -1,11 +1,7 @@
-package methods
-
-import (
-	"github.com/rikvdh/go-mollie-api/core"
-)
+package mollie
 
 type MethodApi struct {
-	core core.Core
+	core *Core
 }
 
 type MethodAmount struct {
@@ -33,7 +29,7 @@ type MethodListWrapper struct {
 	Data       []Method
 }
 
-func NewMethods(c core.Core) *MethodApi {
+func NewMethods(c *Core) *MethodApi {
 	return &MethodApi{core: c}
 }
 

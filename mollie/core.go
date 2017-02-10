@@ -1,4 +1,4 @@
-package core
+package mollie
 
 import (
 	"encoding/json"

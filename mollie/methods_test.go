@@ -1,12 +1,11 @@
-package methods
+package mollie
 
 import (
-	"github.com/rikvdh/go-mollie-api/core"
 	"testing"
 )
 
 func TestMethodList(t *testing.T) {
-	is := NewMethods(core.Core{ApiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
+	is := NewMethods(&Core{ApiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
 
 	i, err := is.List()
 	if err != nil {
@@ -18,7 +17,7 @@ func TestMethodList(t *testing.T) {
 }
 
 func TestMethodGet(t *testing.T) {
-	is := NewMethods(core.Core{ApiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
+	is := NewMethods(&Core{ApiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
 
 	i, err := is.Get("non-existing-id")
 	if i != nil {

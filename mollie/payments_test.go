@@ -1,12 +1,11 @@
-package payments
+package mollie
 
 import (
-	"github.com/rikvdh/go-mollie-api/core"
 	"testing"
 )
 
 func TestPaymentAddGet(t *testing.T) {
-	is := NewPayments(core.Core{ApiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
+	is := NewPayments(&Core{ApiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
 
 	p, err := is.New(PaymentData{
 		Amount:      100.99,
@@ -42,7 +41,7 @@ func TestPaymentAddGet(t *testing.T) {
 }
 
 func TestPaymentGetError(t *testing.T) {
-	is := NewPayments(core.Core{ApiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
+	is := NewPayments(&Core{ApiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
 
 	q, err := is.Get("foo_bar")
 	if err == nil {
@@ -54,7 +53,7 @@ func TestPaymentGetError(t *testing.T) {
 }
 
 func TestPaymentList(t *testing.T) {
-	is := NewPayments(core.Core{ApiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
+	is := NewPayments(&Core{ApiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
 
 	q, err := is.List(0, 2)
 	if err != nil {
