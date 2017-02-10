@@ -46,6 +46,7 @@ func (c Core) Request(action string, d interface{}) error {
 	if resp.StatusCode >= 400 {
 		return errors.New(resp.Status)
 	}
+
 	err = json.Unmarshal(data, &d)
 	if err != nil {
 		return err
