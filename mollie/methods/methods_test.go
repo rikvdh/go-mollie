@@ -10,10 +10,10 @@ func TestMethodList(t *testing.T) {
 
 	i, err := is.List()
 	if err != nil {
-		t.Errorf("Error is not nil\n")
+		t.Errorf("Error is not nil %s\n", err)
 	}
 	if len(i) != 11 {
-		t.Errorf("In testmode we expect exactly one method, got %d", len(i))
+		t.Errorf("In testmode we expect 11 method, got %d", len(i))
 	}
 }
 

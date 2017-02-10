@@ -9,8 +9,8 @@ type MethodApi struct {
 }
 
 type MethodAmount struct {
-	Minimum string
-	Maximum string
+	Minimum float64 `json:",string"`
+	Maximum float64 `json:",string"`
 }
 
 type MethodImage struct {
