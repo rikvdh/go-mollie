@@ -23,6 +23,20 @@ type PaymentData struct {
 	Issuer string `json:"issuer,omitempty"`
 }
 
+type PaymentStatus string
+
+const (
+	STATUS_OPEN PaymentStatus = "open"
+	STATUS_CANCELLED PaymentStatus = "cancelled"
+	STATUS_EXPIRED PaymentStatus = "expired"
+	STATUS_FAILED PaymentStatus  = "failed"
+	STATUS_PENDING PaymentStatus = "pending"
+	STATUS_PAID PaymentStatus = "paid"
+	STATUS_PAIDOUT PaymentStatus = "paidout"
+	STATUS_REFUNDED PaymentStatus = "refunded"
+	STATUS_CHARGED_BACK PaymentStatus = "charged_back"
+)
+
 type PaymentReply struct {
 	Id string
 	Mode string
@@ -30,7 +44,7 @@ type PaymentReply struct {
 	ExpiredDatetime time.Time `json:"expiredDatetime"`
 	CancelledDatetime time.Time `json:"cancelledDatetime"`
 	PaidDatetime time.Time `json:"paidDatetime"`
-	Status string
+	Status PaymentStatus
 	ExpiryPeriod string `json:"expiryPeriod"`
 	Amount float64 `json:",string"`
 	AmountRefunded float64 `json:"amountRefunded,string,omitempty"`

@@ -4,11 +4,13 @@ import (
 	"localhost/he/go-mollie-api/mollie/core"
 	"localhost/he/go-mollie-api/mollie/issuers"
 	"localhost/he/go-mollie-api/mollie/methods"
+	"localhost/he/go-mollie-api/mollie/payments"
 )
 
 type Mollie struct {
 	Issuers *issuers.IssuerApi
 	Methods *methods.MethodApi
+	Payments *payments.PaymentApi
 }
 
 func Get(apiKey string) Mollie {
@@ -17,5 +19,6 @@ func Get(apiKey string) Mollie {
 	return Mollie{
 		Issuers: issuers.NewIssuers(c),
 		Methods: methods.NewMethods(c),
+		Payments: payments.NewPayments(c),
 	}
 }
