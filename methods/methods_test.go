@@ -1,8 +1,8 @@
 package methods
 
 import (
-	"testing"
 	"github.com/rikvdh/go-mollie-api/core"
+	"testing"
 )
 
 func TestMethodList(t *testing.T) {

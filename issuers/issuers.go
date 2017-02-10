@@ -9,9 +9,9 @@ type IssuerApi struct {
 }
 
 type Issuer struct {
-	Id string
-	Name string
-	Method string
+	Id       string
+	Name     string
+	Method   string
 	Resource string
 }
 
@@ -23,7 +23,7 @@ type IssuerListWrapper struct {
 }
 
 func NewIssuers(c core.Core) *IssuerApi {
-	return &IssuerApi{core : c}
+	return &IssuerApi{core: c}
 }
 
 func (a *IssuerApi) List() ([]Issuer, error) {
@@ -39,7 +39,7 @@ func (a *IssuerApi) List() ([]Issuer, error) {
 
 func (a *IssuerApi) Get(issuerId string) (*Issuer, error) {
 	var issuer Issuer
-	err := a.core.Get("issuers/" + issuerId, &issuer)
+	err := a.core.Get("issuers/"+issuerId, &issuer)
 	if err != nil {
 		return nil, err
 	}

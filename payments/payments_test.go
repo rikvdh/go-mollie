@@ -1,21 +1,21 @@
 package payments
 
 import (
-	"testing"
 	"github.com/rikvdh/go-mollie-api/core"
+	"testing"
 )
 
 func TestPaymentAddGet(t *testing.T) {
 	is := NewPayments(core.Core{ApiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
 
 	p, err := is.New(PaymentData{
-		Amount: 100.99,
+		Amount:      100.99,
 		Description: "test descr",
 		RedirectUrl: "http://www.google.com",
-		WebhookUrl: "https://www.google.com/mollieapihook",
-		Method: "ideal",
+		WebhookUrl:  "https://www.google.com/mollieapihook",
+		Method:      "ideal",
 		Metadata: map[string]string{
-			"rikvdh" : "mollie-api",
+			"rikvdh": "mollie-api",
 		},
 	})
 	if err != nil {

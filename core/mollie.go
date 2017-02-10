@@ -1,12 +1,12 @@
 package core
 
 import (
+	"encoding/json"
 	"errors"
-	"strings"
 	"io"
 	"io/ioutil"
 	"net/http"
-	"encoding/json"
+	"strings"
 )
 
 const endpoint string = "https://api.mollie.nl"
@@ -42,7 +42,7 @@ func (c Core) request(method, action string, d interface{}, reader io.Reader) er
 
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", "go-mollie-api/v0.0.0-dev")
-	req.Header.Set("Authorization", "Bearer " + c.ApiKey)
+	req.Header.Set("Authorization", "Bearer "+c.ApiKey)
 
 	client := &http.Client{}
 	resp, err := client.Do(req)

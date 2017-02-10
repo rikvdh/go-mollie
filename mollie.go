@@ -8,17 +8,17 @@ import (
 )
 
 type Mollie struct {
-	Issuers *issuers.IssuerApi
-	Methods *methods.MethodApi
+	Issuers  *issuers.IssuerApi
+	Methods  *methods.MethodApi
 	Payments *payments.PaymentApi
 }
 
 func Get(apiKey string) Mollie {
-	c := core.Core{ApiKey : apiKey}
+	c := core.Core{ApiKey: apiKey}
 
 	return Mollie{
-		Issuers: issuers.NewIssuers(c),
-		Methods: methods.NewMethods(c),
+		Issuers:  issuers.NewIssuers(c),
+		Methods:  methods.NewMethods(c),
 		Payments: payments.NewPayments(c),
 	}
 }

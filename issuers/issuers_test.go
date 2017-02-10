@@ -1,8 +1,8 @@
 package issuers
 
 import (
-	"testing"
 	"github.com/rikvdh/go-mollie-api/core"
+	"testing"
 )
 
 func TestIssuerList(t *testing.T) {

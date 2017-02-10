@@ -19,11 +19,11 @@ type MethodImage struct {
 }
 
 type Method struct {
-	Id string
+	Id          string
 	Description string
-	Amount MethodAmount
-	Image MethodImage
-	Resource string
+	Amount      MethodAmount
+	Image       MethodImage
+	Resource    string
 }
 
 type MethodListWrapper struct {
@@ -34,7 +34,7 @@ type MethodListWrapper struct {
 }
 
 func NewMethods(c core.Core) *MethodApi {
-	return &MethodApi{core : c}
+	return &MethodApi{core: c}
 }
 
 func (a *MethodApi) List() ([]Method, error) {
@@ -50,7 +50,7 @@ func (a *MethodApi) List() ([]Method, error) {
 
 func (a *MethodApi) Get(methodId string) (*Method, error) {
 	var method Method
-	err := a.core.Get("methods/" + methodId, &method)
+	err := a.core.Get("methods/"+methodId, &method)
 	if err != nil {
 		return nil, err
 	}
