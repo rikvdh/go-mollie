@@ -2,7 +2,7 @@ package issuers
 
 import (
 	"testing"
-	"localhost/he/go-mollie-api/mollie/core"
+	"github.com/rikvdh/go-mollie-api/core"
 )
 
 func TestIssuerList(t *testing.T) {

@@ -1,10 +1,10 @@
 package mollie
 
 import (
-	"localhost/he/go-mollie-api/mollie/core"
-	"localhost/he/go-mollie-api/mollie/issuers"
-	"localhost/he/go-mollie-api/mollie/methods"
-	"localhost/he/go-mollie-api/mollie/payments"
+	"github.com/rikvdh/go-mollie-api/core"
+	"github.com/rikvdh/go-mollie-api/issuers"
+	"github.com/rikvdh/go-mollie-api/methods"
+	"github.com/rikvdh/go-mollie-api/payments"
 )
 
 type Mollie struct {

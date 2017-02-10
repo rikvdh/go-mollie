@@ -1,7 +1,7 @@
 package issuers
 
 import (
-	"localhost/he/go-mollie-api/mollie/core"
+	"github.com/rikvdh/go-mollie-api/core"
 )
 
 type IssuerApi struct {

@@ -2,7 +2,7 @@ package methods
 
 import (
 	"testing"
-	"localhost/he/go-mollie-api/mollie/core"
+	"github.com/rikvdh/go-mollie-api/core"
 )
 
 func TestMethodList(t *testing.T) {

@@ -3,7 +3,7 @@ package payments
 import (
 	"time"
 	"strconv"
-	"localhost/he/go-mollie-api/mollie/core"
+	"github.com/rikvdh/go-mollie-api/core"
 )
 
 type PaymentApi struct {
