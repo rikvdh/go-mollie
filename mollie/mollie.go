@@ -6,8 +6,8 @@ type Mollie struct {
 	payments *PaymentApi
 }
 
-func Get(apiKey string) Mollie {
-	c := Core{ApiKey: apiKey}
+func Get(apikey string) Mollie {
+	c := core{apiKey: apikey}
 
 	return Mollie{
 		issuers:  NewIssuers(&c),

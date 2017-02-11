@@ -6,7 +6,7 @@ import (
 )
 
 type PaymentApi struct {
-	core *Core
+	c *core
 }
 
 type PaymentData struct {
@@ -63,14 +63,14 @@ type PaymentReplyWrapper struct {
 	Data       []PaymentReply
 }
 
-func NewPayments(c *Core) *PaymentApi {
-	return &PaymentApi{core: c}
+func NewPayments(co *core) *PaymentApi {
+	return &PaymentApi{c: co}
 }
 
 func (a *PaymentApi) New(data PaymentData) (*PaymentReply, error) {
 	p := PaymentReply{}
 
-	err := a.core.Post("payments", &p, &data)
+	err := a.c.Post("payments", &p, &data)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (a *PaymentApi) New(data PaymentData) (*PaymentReply, error) {
 func (a *PaymentApi) Get(id string) (*PaymentReply, error) {
 	p := PaymentReply{}
 
-	err := a.core.Get("payments/"+id, &p)
+	err := a.c.Get("payments/"+id, &p)
 	if err != nil {
 		return nil, err
 	}
@@ -97,7 +97,7 @@ func (a *PaymentApi) List(offset, limit uint64) ([]PaymentReply, error) {
 	uri += "&count="
 	uri += strconv.FormatUint(limit, 10)
 
-	err := a.core.Get(uri, &p)
+	err := a.c.Get(uri, &p)
 	if err != nil {
 		return nil, err
 	}

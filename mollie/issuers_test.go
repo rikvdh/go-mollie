@@ -5,7 +5,7 @@ import (
 )
 
 func TestIssuerList(t *testing.T) {
-	is := NewIssuers(&Core{ApiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
+	is := NewIssuers(&core{apiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
 
 	i, err := is.List()
 	if err != nil {
@@ -17,7 +17,7 @@ func TestIssuerList(t *testing.T) {
 }
 
 func TestIssuerGet(t *testing.T) {
-	is := NewIssuers(&Core{ApiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
+	is := NewIssuers(&core{apiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
 
 	i, err := is.Get("non-existing-id")
 	if i != nil {

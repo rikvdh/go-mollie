@@ -1,7 +1,7 @@
 package mollie
 
 type MethodApi struct {
-	core *Core
+	c *core
 }
 
 type MethodAmount struct {
@@ -29,13 +29,13 @@ type MethodListWrapper struct {
 	Data       []Method
 }
 
-func NewMethods(c *Core) *MethodApi {
-	return &MethodApi{core: c}
+func NewMethods(co *core) *MethodApi {
+	return &MethodApi{c: co}
 }
 
 func (a *MethodApi) List() ([]Method, error) {
 	var methods MethodListWrapper
-	err := a.core.Get("methods", &methods)
+	err := a.c.Get("methods", &methods)
 
 	if err != nil {
 		return nil, err
@@ -46,7 +46,7 @@ func (a *MethodApi) List() ([]Method, error) {
 
 func (a *MethodApi) Get(methodId string) (*Method, error) {
 	var method Method
-	err := a.core.Get("methods/"+methodId, &method)
+	err := a.c.Get("methods/"+methodId, &method)
 	if err != nil {
 		return nil, err
 	}

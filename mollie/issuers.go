@@ -1,7 +1,7 @@
 package mollie
 
 type IssuerApi struct {
-	core *Core
+	c *core
 }
 
 type Issuer struct {
@@ -18,13 +18,13 @@ type IssuerListWrapper struct {
 	Data       []Issuer
 }
 
-func NewIssuers(c *Core) *IssuerApi {
-	return &IssuerApi{core: c}
+func NewIssuers(co *core) *IssuerApi {
+	return &IssuerApi{c: co}
 }
 
 func (a *IssuerApi) List() ([]Issuer, error) {
 	var issuers IssuerListWrapper
-	err := a.core.Get("issuers", &issuers)
+	err := a.c.Get("issuers", &issuers)
 
 	if err != nil {
 		return nil, err
@@ -35,7 +35,7 @@ func (a *IssuerApi) List() ([]Issuer, error) {
 
 func (a *IssuerApi) Get(issuerId string) (*Issuer, error) {
 	var issuer Issuer
-	err := a.core.Get("issuers/"+issuerId, &issuer)
+	err := a.c.Get("issuers/"+issuerId, &issuer)
 	if err != nil {
 		return nil, err
 	}
