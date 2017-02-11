@@ -27,4 +27,3 @@ func (m Mollie) Methods() *MethodApi {
 func (m Mollie) Payments() *PaymentApi {
 	return m.payments
 }
-
