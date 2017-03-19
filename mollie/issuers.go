@@ -5,7 +5,7 @@ type IssuerApi struct {
 }
 
 type Issuer struct {
-	Id       string
+	ID       string
 	Name     string
 	Method   string
 	Resource string
@@ -18,7 +18,7 @@ type IssuerListWrapper struct {
 	Data       []Issuer
 }
 
-func NewIssuers(co *core) *IssuerApi {
+func newIssuers(co *core) *IssuerApi {
 	return &IssuerApi{c: co}
 }
 

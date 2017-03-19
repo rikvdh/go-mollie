@@ -5,7 +5,7 @@ import (
 )
 
 func TestIssuerList(t *testing.T) {
-	is := NewIssuers(&core{apiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
+	is := newIssuers(&core{apiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
 
 	i, err := is.List()
 	if err != nil {
@@ -17,7 +17,7 @@ func TestIssuerList(t *testing.T) {
 }
 
 func TestIssuerGet(t *testing.T) {
-	is := NewIssuers(&core{apiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
+	is := newIssuers(&core{apiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
 
 	i, err := is.Get("non-existing-id")
 	if i != nil {
@@ -28,8 +28,8 @@ func TestIssuerGet(t *testing.T) {
 	}
 
 	i, err = is.Get("ideal_TESTNL99")
-	if i.Id != "ideal_TESTNL99" {
-		t.Errorf("We expect the ideal_TESTNL99 issuer\n")
+	if i.ID != "ideal_TESTNL99" {
+		t.Errorf("We expect the ideal_TESTNL99 issuer, got: %s\n", i.ID)
 	}
 	if err != nil {
 		t.Errorf("Error is not nil\n")

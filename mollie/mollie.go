@@ -10,9 +10,9 @@ func Get(apikey string) Mollie {
 	c := core{apiKey: apikey}
 
 	return Mollie{
-		issuers:  NewIssuers(&c),
-		methods:  NewMethods(&c),
-		payments: NewPayments(&c),
+		issuers:  newIssuers(&c),
+		methods:  newMethods(&c),
+		payments: newPayments(&c),
 	}
 }
 

@@ -5,15 +5,17 @@ import (
 	"time"
 )
 
+// PaymentApi structure holds a pointer to the core
 type PaymentApi struct {
 	c *core
 }
 
+// PaymentData needed for a payment request
 type PaymentData struct {
 	Amount      float64     `json:"amount,string"`
 	Description string      `json:"description"`
-	RedirectUrl string      `json:"redirectUrl"`
-	WebhookUrl  string      `json:"webhookUrl"`
+	RedirectURL string      `json:"redirectUrl"`
+	WebhookURL  string      `json:"webhookUrl"`
 	Method      string      `json:"method,omitempty"`
 	Metadata    interface{} `json:"metadata"`
 	// One of de_DE en_US es_ES fr_FR nl_BE fr_BE nl_NL
@@ -22,22 +24,24 @@ type PaymentData struct {
 	Issuer string `json:"issuer,omitempty"`
 }
 
+// PaymentStatus for a payment
 type PaymentStatus string
 
 const (
-	STATUS_OPEN         PaymentStatus = "open"
-	STATUS_CANCELLED    PaymentStatus = "cancelled"
-	STATUS_EXPIRED      PaymentStatus = "expired"
-	STATUS_FAILED       PaymentStatus = "failed"
-	STATUS_PENDING      PaymentStatus = "pending"
-	STATUS_PAID         PaymentStatus = "paid"
-	STATUS_PAIDOUT      PaymentStatus = "paidout"
-	STATUS_REFUNDED     PaymentStatus = "refunded"
-	STATUS_CHARGED_BACK PaymentStatus = "charged_back"
+	StatusOpen        PaymentStatus = "open"
+	StatusCancelled   PaymentStatus = "cancelled"
+	StatusExpired     PaymentStatus = "expired"
+	StatusFailed      PaymentStatus = "failed"
+	StatusPending     PaymentStatus = "pending"
+	StatusPaid        PaymentStatus = "paid"
+	StatusPaidout     PaymentStatus = "paidout"
+	StatusRefunded    PaymentStatus = "refunded"
+	StatusChargedBack PaymentStatus = "charged_back"
 )
 
+// PaymentReply for a payment
 type PaymentReply struct {
-	Id                string
+	ID                string
 	Mode              string
 	CreatedDatetime   time.Time `json:"createdDatetime"`
 	ExpiredDatetime   time.Time `json:"expiredDatetime"`
@@ -52,7 +56,7 @@ type PaymentReply struct {
 	Method            string
 	Metadata          interface{}
 	Details           interface{} `json:",omitempty"`
-	ProfileId         string      `json:"profileId"`
+	ProfileID         string      `json:"profileId"`
 	Links             map[string]string
 }
 
@@ -63,7 +67,7 @@ type PaymentReplyWrapper struct {
 	Data       []PaymentReply
 }
 
-func NewPayments(co *core) *PaymentApi {
+func newPayments(co *core) *PaymentApi {
 	return &PaymentApi{c: co}
 }
 

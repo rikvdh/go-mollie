@@ -16,7 +16,7 @@ type core struct {
 	apiKey string
 }
 
-func getUri(action string) string {
+func getURI(action string) string {
 	return endpoint + "/" + apiVersion + "/" + action
 }
 
@@ -35,7 +35,7 @@ func (c core) Post(action string, d interface{}, postData interface{}) error {
 }
 
 func (c core) request(method, action string, d interface{}, reader io.Reader) error {
-	req, err := http.NewRequest(method, getUri(action), reader)
+	req, err := http.NewRequest(method, getURI(action), reader)
 	if err != nil {
 		return err
 	}
@@ -51,9 +51,11 @@ func (c core) request(method, action string, d interface{}, reader io.Reader) er
 	}
 
 	data, err := ioutil.ReadAll(resp.Body)
-	resp.Body.Close()
-
 	if err != nil {
+		return err
+	}
+
+	if err := resp.Body.Close(); err != nil {
 		return err
 	}
 

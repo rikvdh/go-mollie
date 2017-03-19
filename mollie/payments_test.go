@@ -5,13 +5,13 @@ import (
 )
 
 func TestPaymentAddGet(t *testing.T) {
-	is := NewPayments(&core{apiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
+	is := newPayments(&core{apiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
 
 	p, err := is.New(PaymentData{
 		Amount:      100.99,
 		Description: "test descr",
-		RedirectUrl: "http://www.google.com",
-		WebhookUrl:  "https://www.google.com/mollieapihook",
+		RedirectURL: "http://www.google.com",
+		WebhookURL:  "https://www.google.com/mollieapihook",
 		Method:      "ideal",
 		Metadata: map[string]string{
 			"rikvdh": "mollie-api",
@@ -20,18 +20,18 @@ func TestPaymentAddGet(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error is not nil\n")
 	}
-	if len(p.Id) == 0 {
+	if len(p.ID) == 0 {
 		t.Errorf("ID must not be empty\n")
 	}
 	if p.Amount != 100.99 {
 		t.Errorf("Mollie may not change our amount! :O")
 	}
 
-	q, err := is.Get(p.Id)
+	q, err := is.Get(p.ID)
 	if err != nil {
 		t.Errorf("Error is not nil\n")
 	}
-	if len(q.Id) == 0 {
+	if len(q.ID) == 0 {
 		t.Errorf("ID must not be empty\n")
 	}
 	if q.Amount != 100.99 {
@@ -41,7 +41,7 @@ func TestPaymentAddGet(t *testing.T) {
 }
 
 func TestPaymentGetError(t *testing.T) {
-	is := NewPayments(&core{apiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
+	is := newPayments(&core{apiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
 
 	q, err := is.Get("foo_bar")
 	if err == nil {
@@ -53,7 +53,7 @@ func TestPaymentGetError(t *testing.T) {
 }
 
 func TestPaymentList(t *testing.T) {
-	is := NewPayments(&core{apiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
+	is := newPayments(&core{apiKey: "test_pQ2c9R3DDj2WbQdcaqFNxcjQQ6qSaU"})
 
 	q, err := is.List(0, 2)
 	if err != nil {
