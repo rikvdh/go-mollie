@@ -35,11 +35,12 @@ func (m Mollie) Methods() *MethodAPI {
 	return m.methods
 }
 
-// Payments returns a reference to the PaymentApi
+// Payments returns a reference to the PaymentAPI
 func (m Mollie) Payments() *PaymentAPI {
 	return m.payments
 }
 
+// Customers returns a reference to the CustomerAPI
 func (m Mollie) Customers() *CustomerAPI {
 	return m.customers
 }

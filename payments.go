@@ -32,14 +32,23 @@ type PaymentData struct {
 type PaymentStatus string
 
 const (
-	StatusOpen        PaymentStatus = "open"
-	StatusCancelled   PaymentStatus = "cancelled"
-	StatusExpired     PaymentStatus = "expired"
-	StatusFailed      PaymentStatus = "failed"
-	StatusPending     PaymentStatus = "pending"
-	StatusPaid        PaymentStatus = "paid"
-	StatusPaidout     PaymentStatus = "paidout"
-	StatusRefunded    PaymentStatus = "refunded"
+	// StatusOpen means a payment is open for payment
+	StatusOpen PaymentStatus = "open"
+	// StatusCancelled means a payment is cancelled by a user
+	StatusCancelled PaymentStatus = "cancelled"
+	// StatusExpired means a payment is expired and not accepting payments anymore
+	StatusExpired PaymentStatus = "expired"
+	// StatusFailed means a payment has failed
+	StatusFailed PaymentStatus = "failed"
+	// StatusPending means a payment is on hold and not confirmed (yet)
+	StatusPending PaymentStatus = "pending"
+	// StatusPaid informs you that a payment is marked as paid
+	StatusPaid PaymentStatus = "paid"
+	// StatusPaidout means ?
+	StatusPaidout PaymentStatus = "paidout"
+	// StatusRefunded means this payment is refunded
+	StatusRefunded PaymentStatus = "refunded"
+	// StatusChargedBack means a payment is charged back by the customer
 	StatusChargedBack PaymentStatus = "charged_back"
 )
 
@@ -75,6 +84,7 @@ func newPayments(co *core) *PaymentAPI {
 	return &PaymentAPI{c: co}
 }
 
+// New Creates a new payment
 func (a *PaymentAPI) New(data PaymentData) (*PaymentReply, error) {
 	p := PaymentReply{}
 
@@ -86,6 +96,7 @@ func (a *PaymentAPI) New(data PaymentData) (*PaymentReply, error) {
 	return &p, nil
 }
 
+// Get retrieves a payment with the given ID
 func (a *PaymentAPI) Get(id string) (*PaymentReply, error) {
 	p := PaymentReply{}
 
@@ -97,6 +108,7 @@ func (a *PaymentAPI) Get(id string) (*PaymentReply, error) {
 	return &p, nil
 }
 
+// List returns a list of payments
 func (a *PaymentAPI) List(offset, limit uint64) ([]PaymentReply, error) {
 	p := paymentReplyWrapper{}
 

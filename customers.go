@@ -9,6 +9,7 @@ import (
 	"time"
 )
 
+// CustomerAPI is the part of the API which handles Mollie customers
 type CustomerAPI struct {
 	c *core
 }
@@ -51,6 +52,7 @@ func newCustomers(co *core) *CustomerAPI {
 	return &CustomerAPI{co}
 }
 
+// New creates a new customer
 func (api *CustomerAPI) New(data NewCustomerData) (*Customer, error) {
 	customer := &Customer{}
 
@@ -62,6 +64,7 @@ func (api *CustomerAPI) New(data NewCustomerData) (*Customer, error) {
 	return customer, nil
 }
 
+// Get retrieves customer information with the specified ID
 func (api *CustomerAPI) Get(id string) (*Customer, error) {
 	customer := &Customer{}
 
@@ -73,7 +76,8 @@ func (api *CustomerAPI) Get(id string) (*Customer, error) {
 	return customer, nil
 }
 
-func (api *CustomerAPI) All(offset uint64, limit uint64) (*ListCustomersResponse, error) {
+// List returns a list of customers
+func (api *CustomerAPI) List(offset, limit uint64) (*ListCustomersResponse, error) {
 	uri := "customers?offset="
 	uri += strconv.FormatUint(offset, 10)
 	uri += "&count="
@@ -88,6 +92,7 @@ func (api *CustomerAPI) All(offset uint64, limit uint64) (*ListCustomersResponse
 	return response, nil
 }
 
+// NewPayment creates a new payment for a customer with the specified ID
 func (api *CustomerAPI) NewPayment(id string, data PaymentData) (*PaymentReply, error) {
 	payment := &PaymentReply{}
 
@@ -99,7 +104,8 @@ func (api *CustomerAPI) NewPayment(id string, data PaymentData) (*PaymentReply, 
 	return payment, nil
 }
 
-func (api *CustomerAPI) Payments(id string, offset uint64, limit uint64) (*paymentReplyWrapper, error) {
+// Payments returns a list of payments for a customer with the specified ID
+func (api *CustomerAPI) Payments(id string, offset uint64, limit uint64) ([]PaymentReply, error) {
 	uri := "customers/" + id + "/payments?offset="
 	uri += strconv.FormatUint(offset, 10)
 	uri += "&count="
@@ -111,5 +117,5 @@ func (api *CustomerAPI) Payments(id string, offset uint64, limit uint64) (*payme
 		return nil, err
 	}
 
-	return response, nil
+	return response.Data, nil
 }
