@@ -19,7 +19,55 @@ go get -u github.com/rikvdh/go-mollie
 
 ## Usage
 
-TBD
+A very basic example is shown below.
+Just get an instance of the API with `mollie.Get("<API-KEY>")` and use one of the available API's.
+Other examples are show in the `_examples` directory.
+
+```golang
+package main
+
+import (
+	"fmt"
+
+	"github.com/rikvdh/go-mollie"
+)
+
+func main() {
+	m := mollie.Get("<apikey>")
+
+	methods, err := m.Methods().List()
+	if err != nil {
+		panic(err)
+	}
+
+	for _, method := range methods {
+		fmt.Printf("method %s: %s\n", method.ID, method.Description)
+	}
+}
+```
+
+## Status
+
+It works and I myself use it in production without issues.
+Currently only authentication by API keys. See the [documentation of Mollie](https://www.mollie.com/en/docs/overview) for more information on the API's.
+Currently implemented API's:
+
+- [x] Payments API
+- [x] Methods API
+- [x] Issuers API
+- [ ] Refunds API
+- [x] Customers API
+- [ ] Mandates API
+- [ ] Subscriptions API
+
+Other API's which require OAuth API authentication:
+
+- [ ] Connect API
+- [ ] Permissions API
+- [ ] Organizations API
+- [ ] Profiles API
+- [ ] Settlements API
+- [ ] Invoices API
 
 ## Contributing
 
