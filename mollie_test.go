@@ -16,4 +16,7 @@ func TestMollie(t *testing.T) {
 	if m.Payments() == nil {
 		t.Errorf("Issuers is nil")
 	}
+	if m.Customers() == nil {
+		t.Errorf("Customers is nil")
+	}
 }

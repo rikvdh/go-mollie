@@ -6,6 +6,7 @@ type Mollie struct {
 	issuers  *IssuerAPI
 	methods  *MethodAPI
 	payments *PaymentAPI
+	customers *CustomerAPI
 }
 
 // Get generates a new API structure with the provided API-Key
@@ -13,9 +14,10 @@ func Get(apikey string) Mollie {
 	c := core{apiKey: apikey}
 
 	return Mollie{
-		issuers:  newIssuers(&c),
-		methods:  newMethods(&c),
-		payments: newPayments(&c),
+		issuers:   newIssuers(&c),
+		methods:   newMethods(&c),
+		payments:  newPayments(&c),
+		customers: newCustomers(&c),
 	}
 }
 
@@ -32,4 +34,8 @@ func (m Mollie) Methods() *MethodAPI {
 // Payments returns a reference to the PaymentApi
 func (m Mollie) Payments() *PaymentAPI {
 	return m.payments
+}
+
+func (m Mollie) Customers() *CustomerAPI {
+	return m.customers
 }
