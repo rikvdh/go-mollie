@@ -5,8 +5,8 @@ import (
 	"time"
 )
 
-// PaymentApi structure holds a pointer to the core
-type PaymentApi struct {
+// PaymentAPI structure holds a pointer to the core
+type PaymentAPI struct {
 	c *core
 }
 
@@ -60,18 +60,18 @@ type PaymentReply struct {
 	Links             map[string]string
 }
 
-type PaymentReplyWrapper struct {
+type paymentReplyWrapper struct {
 	TotalCount int `json:"totalCount"`
 	Offset     int
 	Count      int
 	Data       []PaymentReply
 }
 
-func newPayments(co *core) *PaymentApi {
-	return &PaymentApi{c: co}
+func newPayments(co *core) *PaymentAPI {
+	return &PaymentAPI{c: co}
 }
 
-func (a *PaymentApi) New(data PaymentData) (*PaymentReply, error) {
+func (a *PaymentAPI) New(data PaymentData) (*PaymentReply, error) {
 	p := PaymentReply{}
 
 	err := a.c.Post("payments", &p, &data)
@@ -82,7 +82,7 @@ func (a *PaymentApi) New(data PaymentData) (*PaymentReply, error) {
 	return &p, nil
 }
 
-func (a *PaymentApi) Get(id string) (*PaymentReply, error) {
+func (a *PaymentAPI) Get(id string) (*PaymentReply, error) {
 	p := PaymentReply{}
 
 	err := a.c.Get("payments/"+id, &p)
@@ -93,8 +93,8 @@ func (a *PaymentApi) Get(id string) (*PaymentReply, error) {
 	return &p, nil
 }
 
-func (a *PaymentApi) List(offset, limit uint64) ([]PaymentReply, error) {
-	p := PaymentReplyWrapper{}
+func (a *PaymentAPI) List(offset, limit uint64) ([]PaymentReply, error) {
+	p := paymentReplyWrapper{}
 
 	uri := "payments?offset="
 	uri += strconv.FormatUint(offset, 10)

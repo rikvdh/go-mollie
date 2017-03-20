@@ -1,11 +1,14 @@
 package mollie
 
+// Mollie holds references to all sections of the API
+// use the access functions to retrieve instances of this structure
 type Mollie struct {
-	issuers  *IssuerApi
-	methods  *MethodApi
-	payments *PaymentApi
+	issuers  *IssuerAPI
+	methods  *MethodAPI
+	payments *PaymentAPI
 }
 
+// Get generates a new API structure with the provided API-Key
 func Get(apikey string) Mollie {
 	c := core{apiKey: apikey}
 
@@ -16,14 +19,17 @@ func Get(apikey string) Mollie {
 	}
 }
 
-func (m Mollie) Issuers() *IssuerApi {
+// Issuers returns a reference to the IssuerAPI
+func (m Mollie) Issuers() *IssuerAPI {
 	return m.issuers
 }
 
-func (m Mollie) Methods() *MethodApi {
+// Methods returns a reference to the MethodAPI
+func (m Mollie) Methods() *MethodAPI {
 	return m.methods
 }
 
-func (m Mollie) Payments() *PaymentApi {
+// Payments returns a reference to the PaymentApi
+func (m Mollie) Payments() *PaymentAPI {
 	return m.payments
 }

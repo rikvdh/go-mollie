@@ -1,9 +1,11 @@
 package mollie
 
-type IssuerApi struct {
+// IssuerAPI type, holds reference to the core
+type IssuerAPI struct {
 	c *core
 }
 
+// Issuer for, for example, the iDeal payment method
 type Issuer struct {
 	ID       string
 	Name     string
@@ -11,19 +13,20 @@ type Issuer struct {
 	Resource string
 }
 
-type IssuerListWrapper struct {
+type issuerListWrapper struct {
 	TotalCount int `json:"totalCount"`
 	Offset     int
 	Count      int
 	Data       []Issuer
 }
 
-func newIssuers(co *core) *IssuerApi {
-	return &IssuerApi{c: co}
+func newIssuers(co *core) *IssuerAPI {
+	return &IssuerAPI{c: co}
 }
 
-func (a *IssuerApi) List() ([]Issuer, error) {
-	var issuers IssuerListWrapper
+// List returns a full listing of all issuers
+func (a *IssuerAPI) List() ([]Issuer, error) {
+	var issuers issuerListWrapper
 	err := a.c.Get("issuers", &issuers)
 
 	if err != nil {
@@ -33,9 +36,10 @@ func (a *IssuerApi) List() ([]Issuer, error) {
 	return issuers.Data, nil
 }
 
-func (a *IssuerApi) Get(issuerId string) (*Issuer, error) {
+// Get returns a single issuer with the ID given
+func (a *IssuerAPI) Get(issuerID string) (*Issuer, error) {
 	var issuer Issuer
-	err := a.c.Get("issuers/"+issuerId, &issuer)
+	err := a.c.Get("issuers/"+issuerID, &issuer)
 	if err != nil {
 		return nil, err
 	}

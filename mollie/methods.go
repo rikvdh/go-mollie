@@ -1,6 +1,6 @@
 package mollie
 
-type MethodApi struct {
+type MethodAPI struct {
 	c *core
 }
 
@@ -22,19 +22,19 @@ type Method struct {
 	Resource    string
 }
 
-type MethodListWrapper struct {
+type methodListWrapper struct {
 	TotalCount int `json:"totalCount"`
 	Offset     int
 	Count      int
 	Data       []Method
 }
 
-func newMethods(co *core) *MethodApi {
-	return &MethodApi{c: co}
+func newMethods(co *core) *MethodAPI {
+	return &MethodAPI{c: co}
 }
 
-func (a *MethodApi) List() ([]Method, error) {
-	var methods MethodListWrapper
+func (a *MethodAPI) List() ([]Method, error) {
+	var methods methodListWrapper
 	err := a.c.Get("methods", &methods)
 
 	if err != nil {
@@ -44,7 +44,7 @@ func (a *MethodApi) List() ([]Method, error) {
 	return methods.Data, nil
 }
 
-func (a *MethodApi) Get(methodID string) (*Method, error) {
+func (a *MethodAPI) Get(methodID string) (*Method, error) {
 	var method Method
 	err := a.c.Get("methods/"+methodID, &method)
 	if err != nil {
