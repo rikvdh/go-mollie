@@ -1,11 +1,15 @@
+// Copyright 2017 The Go-Mollie Authors. All rights reserved.
+// Use of this source code is governed by a MIT-style
+// license that can be found in the LICENSE file.
+
 package mollie
 
 // Mollie holds references to all sections of the API
 // use the access functions to retrieve instances of this structure
 type Mollie struct {
-	issuers  *IssuerAPI
-	methods  *MethodAPI
-	payments *PaymentAPI
+	issuers   *IssuerAPI
+	methods   *MethodAPI
+	payments  *PaymentAPI
 	customers *CustomerAPI
 }
 
