@@ -64,14 +64,14 @@ func TestPaymentList(t *testing.T) {
 		t.Errorf("Error is not nil: %s\n", err)
 	}
 	if len(q) != 2 {
-		t.Errorf("ID must not be empty\n")
+		t.Errorf("Expect 2 issuers: %+v\n", q)
 	}
 	w, err := is.List(0, 1)
 	if err != nil {
 		t.Errorf("Error is not nil: %s\n", err)
 	}
 	if len(w) != 1 {
-		t.Errorf("ID must not be empty\n")
+		t.Errorf("Expect 1 issuer: %+v\n", w)
 	}
 	e, err := is.List(1, 1)
 	if err != nil {

@@ -20,6 +20,12 @@ type core struct {
 	apiKey string
 }
 
+type errorReply struct {
+	Error struct {
+		Message string
+	}
+}
+
 func getURI(action string) string {
 	return endpoint + "/" + apiVersion + "/" + action
 }
@@ -45,7 +51,7 @@ func (c core) request(method, action string, d interface{}, reader io.Reader) er
 	}
 
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("User-Agent", "go-mollie-api/v0.0.0-dev")
+	req.Header.Set("User-Agent", "go-mollie-api/v1")
 	req.Header.Set("Authorization", "Bearer "+c.apiKey)
 
 	client := &http.Client{}
@@ -64,6 +70,13 @@ func (c core) request(method, action string, d interface{}, reader io.Reader) er
 	}
 
 	if resp.StatusCode >= 400 {
+		if len(data) > 0 {
+			r := &errorReply{}
+			err := json.Unmarshal(data, r)
+			if err == nil && len(r.Error.Message) > 0 {
+				return errors.New(r.Error.Message)
+			}
+		}
 		return errors.New(resp.Status)
 	}
 
