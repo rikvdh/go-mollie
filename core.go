@@ -31,7 +31,7 @@ func getURI(action string) string {
 }
 
 func (c core) Get(action string, d interface{}) error {
-	return c.request("GET", action, d, nil)
+	return c.request(http.MethodGet, action, d, nil)
 }
 
 func (c core) Post(action string, d interface{}, postData interface{}) error {
@@ -41,7 +41,7 @@ func (c core) Post(action string, d interface{}, postData interface{}) error {
 	}
 
 	reader := strings.NewReader(string(postStr))
-	return c.request("POST", action, d, reader)
+	return c.request(http.MethodPost, action, d, reader)
 }
 
 func (c core) request(method, action string, d interface{}, reader io.Reader) error {
@@ -80,9 +80,5 @@ func (c core) request(method, action string, d interface{}, reader io.Reader) er
 		return errors.New(resp.Status)
 	}
 
-	err = json.Unmarshal(data, &d)
-	if err != nil {
-		return err
-	}
-	return nil
+	return json.Unmarshal(data, &d)
 }
