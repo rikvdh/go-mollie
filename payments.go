@@ -108,6 +108,18 @@ func (a *PaymentAPI) Get(id string) (*PaymentReply, error) {
 	return &p, nil
 }
 
+// Delete a payment with the given ID
+func (a *PaymentAPI) Delete(id string) (*PaymentReply, error) {
+	p := PaymentReply{}
+
+	err := a.c.Delete("payments/"+id, &p)
+	if err != nil {
+		return nil, err
+	}
+
+	return &p, nil
+}
+
 // List returns a list of payments
 func (a *PaymentAPI) List(offset, limit uint64) ([]PaymentReply, error) {
 	p := paymentReplyWrapper{}

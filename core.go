@@ -33,6 +33,9 @@ func getURI(action string) string {
 func (c core) Get(action string, d interface{}) error {
 	return c.request(http.MethodGet, action, d, nil)
 }
+func (c core) Delete(action string, d interface{}) error {
+	return c.request(http.MethodDelete, action, d, nil)
+}
 
 func (c core) Post(action string, d interface{}, postData interface{}) error {
 	postStr, err := json.Marshal(postData)
